@@ -1,3 +1,4 @@
 [submodule "MonoMod.Common"]
 	path = MonoMod.Common
-	url = https://github.com/MonoMod/MonoMod.Common.git
+	url = https://github.com/RoonLabs/MonoMod.Common.git
+	branch = Roon-net5-windows
