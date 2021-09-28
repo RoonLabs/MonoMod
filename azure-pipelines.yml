@@ -97,23 +97,23 @@ steps:
     targetFramework: 'netstandard2.0'
 
 # Create and "publish" nupkg artifacts.
-#- task: DotNetCoreCLI@2
-#  displayName: 'Artifacts: Pack: nupkgs'
-#  continueOnError: true
-#  inputs:
-#    command: 'pack'
-#    nobuild: true
-#    configuration: '$(buildConfiguration)'
-#    versioningScheme: 'byBuildNumber'
-#    packagesToPack: 'MonoMod@(|.Common|.Utils|.RuntimeDetour|.RuntimeDetour.HookGen)/*.csproj'
-#    packDirectory: '$(Build.ArtifactStagingDirectory)/nupkgs'
-#- task: PublishBuildArtifacts@1
-#  displayName: 'Artifacts: Publish: nupkgs'
-#  continueOnError: true
-#  inputs:
-#    pathtoPublish: '$(Build.ArtifactStagingDirectory)/nupkgs'
-#    artifactName: '$(artifactPrefix)nupkgs$(artifactSuffix)'
-#    publishLocation: 'Container'
+- task: DotNetCoreCLI@2
+  displayName: 'Artifacts: Pack: nupkgs'
+  continueOnError: true
+  inputs:
+    command: 'pack'
+    nobuild: true
+    configuration: '$(buildConfiguration)'
+    versioningScheme: 'byBuildNumber'
+    packagesToPack: 'MonoMod@(|.Common|.Utils|.RuntimeDetour|.RuntimeDetour.HookGen)/*.csproj'
+    packDirectory: '$(Build.ArtifactStagingDirectory)/nupkgs'
+- task: PublishBuildArtifacts@1
+  displayName: 'Artifacts: Publish: nupkgs'
+  continueOnError: true
+  inputs:
+    pathtoPublish: '$(Build.ArtifactStagingDirectory)/nupkgs'
+    artifactName: '$(artifactPrefix)nupkgs$(artifactSuffix)'
+    publishLocation: 'Container'
 #- task: NuGetCommand@2
 #  condition: and(always(), ne(variables['Build.Reason'], 'PullRequest'), eq(variables.pushNuGet, 'true'))
 #  displayName: 'Artifacts: Push: nupkgs'
